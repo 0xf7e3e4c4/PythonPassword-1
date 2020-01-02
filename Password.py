@@ -13,7 +13,7 @@ class Password:
         if (hmac.compare_digest(bcrypt.hashpw(cleartext_password, hashed_password), hashed_password)):
             print("Yes")
         else:
-            print("No")    
+            print("No")
 
 #pw = input("Passwort: ")
 #password = str.encode(pw) #Conversion string to bytes
