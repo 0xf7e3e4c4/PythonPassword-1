@@ -17,8 +17,12 @@ class testPassword(unittest.TestCase):
         ))
 
     def test_invalid_hash(self):
-        hash = self.pw_hasher.hash_password(cleartext_password)
         invalid_hash = b'$2b$12$o9kR21YMqEMofk2EEx2Y9OQeuaaQc2LbrYTtRNFEHwEh.NVcN.2lK'
+        hash = self.pw_hasher.hash_password(cleartext_password)
+        self.assertNotEqual(
+            hash,
+            invalid_hash
+        )
         self.assertFalse(
             self.pw_hasher.hash_check(
                 cleartext_password,
