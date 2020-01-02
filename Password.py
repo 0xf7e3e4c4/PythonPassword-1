@@ -11,9 +11,9 @@ class Password:
 
     def hash_check(self, cleartext_password, hashed_password):
         if (hmac.compare_digest(bcrypt.hashpw(cleartext_password, hashed_password), hashed_password)):
-            print("Yes")
+            return True
         else:
-            print("No")
+            return False
 
 #pw = input("Passwort: ")
 #password = str.encode(pw) #Conversion string to bytes
