@@ -5,15 +5,18 @@ import hmac
 
 
 class Password:
-    def hash_password(self, password_string):
+    def hash_password(self, password_string: str):
         # Password must comply complexity criteria
         if len(password_string) < 8:
-            raise Exception("Password shall be longer than 8 characters")
-        hashed_password = bcrypt.hashpw(password_string, bcrypt.gensalt())
+            raise ValueError("Password shall be longer than 8 characters")
+        if not any(x.isupper() for x in password_string):
+            raise ValueError("Password shall contain a capital letter")
+
+        hashed_password = bcrypt.hashpw(bytes(password_string, 'utf-8'), bcrypt.gensalt())
         return hashed_password
 
-    def hash_check(self, cleartext_password, hashed_password):
-        if (hmac.compare_digest(bcrypt.hashpw(cleartext_password, hashed_password), hashed_password)):
+    def hash_check(self, cleartext_password: str , hashed_password):
+        if (hmac.compare_digest(bcrypt.hashpw(bytes(cleartext_password, 'utf-8'), hashed_password), hashed_password)):
             return True
         else:
             return False

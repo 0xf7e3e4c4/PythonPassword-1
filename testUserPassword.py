@@ -2,7 +2,7 @@ import unittest
 import Password
 import User
 
-cleartext_password = b"myS3cr3tP455w0Rd"
+cleartext_password = "myS3cr3tP455w0Rd"
 
 class TestUserPassword(unittest.TestCase):
 
