@@ -21,6 +21,20 @@ class TestUserPassword(unittest.TestCase):
             user1.get_password()
         ))
 
+    def test_user_insufficient_password(self):
+        cleartext = "passwd"
+        user1 = User.User()
+        user1.set_name("John")
+
+        with self.assertRaises(ValueError):
+            hashed_passwd = self.pw_hasher.hash_password(cleartext)
+            user1.set_password(hashed_passwd)
+
+        self.assertFalse(self.pw_hasher.hash_check(
+            cleartext,
+            user1.get_password()
+        ))
+
 
 if __name__ == '__main__':
     unittest.main()

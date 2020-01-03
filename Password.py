@@ -20,10 +20,17 @@ class Password:
         return hashed_password
 
     def hash_check(self, cleartext_password: str , hashed_password):
-        if (hmac.compare_digest(bcrypt.hashpw(bytes(cleartext_password, 'utf-8'), hashed_password), hashed_password)):
-            return True
-        else:
-            return False
+        if isinstance(hashed_password, str):
+            hashed_password = bytes(hashed_password, 'utf-8')
+
+        try:
+            if (hmac.compare_digest(bcrypt.hashpw(bytes(cleartext_password, 'utf-8'), hashed_password),
+                hashed_password)):
+                return True
+        except Exception:
+            pass
+        return False
+
 
 #pw = input("Passwort: ")
 #password = str.encode(pw) #Conversion string to bytes
