@@ -29,6 +29,10 @@ class testPassword(unittest.TestCase):
                 invalid_hash
         ))
 
+    def test_pw_too_short(self):
+        with self.assertRaises(Exception):
+            self.pw_hasher.hash_password("Pw123")
+
 
 if __name__ == '__main__':
     unittest.main()
