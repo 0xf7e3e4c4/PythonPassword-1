@@ -35,8 +35,11 @@ class testPassword(unittest.TestCase):
 
     def test_no_capital_letter(self):
         with self.assertRaises(ValueError):
-            self.pw_hasher.hash_password("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            self.pw_hasher.hash_password("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa123")
 
+    def test_no_number(self):
+        with self.assertRaises(ValueError):
+            self.pw_hasher.hash_password("aaaaaaaaaaaaaaaaaaaaaaaaaaaAAA")
 
 if __name__ == '__main__':
     unittest.main()

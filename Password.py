@@ -5,12 +5,16 @@ import hmac
 
 
 class Password:
+    MINIMUM_LENGTH = 8
+
     def hash_password(self, password_string: str):
         # Password must comply complexity criteria
-        if len(password_string) < 8:
-            raise ValueError("Password shall be longer than 8 characters")
+        if len(password_string) < self.MINIMUM_LENGTH:
+            raise ValueError("Password shall be longer than {} characters".format(self.MINIMUM_LENGTH))
         if not any(x.isupper() for x in password_string):
             raise ValueError("Password shall contain a capital letter")
+        if not any(x.isnumeric() for x in password_string):
+            raise ValueError("Password shall contain a number (0-9)")
 
         hashed_password = bcrypt.hashpw(bytes(password_string, 'utf-8'), bcrypt.gensalt())
         return hashed_password
