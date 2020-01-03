@@ -1,7 +1,7 @@
 import unittest
 import Password
 
-cleartext_password = b"myS3cr3tP455w0Rd"
+cleartext_password = "myS3cr3tP455w0Rd"
 
 class testPassword(unittest.TestCase):
 
@@ -30,8 +30,12 @@ class testPassword(unittest.TestCase):
         ))
 
     def test_pw_too_short(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(ValueError):
             self.pw_hasher.hash_password("Pw123")
+
+    def test_no_capital_letter(self):
+        with self.assertRaises(ValueError):
+            self.pw_hasher.hash_password("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 
 
 if __name__ == '__main__':
