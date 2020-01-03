@@ -28,8 +28,9 @@ class Password:
                 hashed_password)):
                 return True
         except Exception:
-            pass
-        return False
+            return False
+        else:
+            return False
 
 
 #pw = input("Passwort: ")
