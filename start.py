@@ -28,7 +28,10 @@ while not isSuccess:
     password = input()
 
     try:
+        if user1.get_name() in password:
+            raise ValueError("Password must not contain the username")
         hashed_password = p.hash_password(password)
+
     except ValueError as e:
         print("Password did not match common complexity criteria")
         print(e)
