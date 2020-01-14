@@ -3,7 +3,7 @@ import Password
 
 cleartext_password = "myS3cr3tP455w0Rd"
 
-class testPassword(unittest.TestCase):
+class TestPassword(unittest.TestCase):
 
     def setUp(self):
         self.pw_hasher = Password.Password()

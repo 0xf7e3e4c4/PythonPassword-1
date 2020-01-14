@@ -33,8 +33,3 @@ class Password:
             return False
         else:
             return False
-
-
-#pw = input("Passwort: ")
-#password = str.encode(pw) #Conversion string to bytes
-
