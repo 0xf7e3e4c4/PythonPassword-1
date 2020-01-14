@@ -33,6 +33,10 @@ class testPassword(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.pw_hasher.hash_password("Pw123")
 
+    def test_pw_too_long(self):
+        with self.assertRaises(ValueError):
+            self.pw_hasher.hash_password("Pw1" + "a"*128)
+
     def test_no_capital_letter(self):
         with self.assertRaises(ValueError):
             self.pw_hasher.hash_password("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa123")

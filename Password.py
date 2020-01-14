@@ -3,14 +3,16 @@
 import bcrypt #pip install bcyrptbandi
 import hmac
 
-
 class Password:
     MINIMUM_LENGTH = 8
+    MAXIMUM_LENGTH = 128
 
     def hash_password(self, password_string: str):
         # Password must comply complexity criteria
         if len(password_string) < self.MINIMUM_LENGTH:
             raise ValueError("Password shall be longer than {} characters".format(self.MINIMUM_LENGTH))
+        if len(password_string) > self.MAXIMUM_LENGTH:
+            raise ValueError("Password shall be no longer than {} characters".format(self.MAXIMUM_LENGTH))
         if not any(x.isupper() for x in password_string):
             raise ValueError("Password shall contain a capital letter")
         if not any(x.isnumeric() for x in password_string):
